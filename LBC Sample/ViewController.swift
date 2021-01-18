@@ -7,13 +7,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: AppBaseViewController {
 
+    var label = UILabel(text: "Application launched")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
+        
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(self.label)
+        
+        let constraints = [
+            self.label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ]
 
+        NSLayoutConstraint.activate(constraints)
+    }
 
 }
 
