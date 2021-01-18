@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307250D25B5EB0500473311 /* UILabel+Extension.swift */; };
 		0307251925B5EDCD00473311 /* AppBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307251825B5EDCD00473311 /* AppBaseViewController.swift */; };
+		0307252025B5F12500473311 /* NBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307251F25B5F12500473311 /* NBNetwork.swift */; };
+		0307252E25B5F22800473311 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307252D25B5F22800473311 /* CoreServices.framework */; };
+		0307253325B5F2F200473311 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
+		0307254125B5F3A200473311 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307254025B5F3A200473311 /* Item.swift */; };
+		0307255325B5FF2800473311 /* LBC_ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307255225B5FF2800473311 /* LBC_ItemTests.swift */; };
 		039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64025B5DADE0000ECA1 /* AppDelegate.swift */; };
 		039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64425B5DADE0000ECA1 /* ViewController.swift */; };
 		039AD64A25B5DADF0000ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64925B5DADF0000ECA1 /* Assets.xcassets */; };
@@ -37,6 +42,12 @@
 /* Begin PBXFileReference section */
 		0307250D25B5EB0500473311 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		0307251825B5EDCD00473311 /* AppBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBaseViewController.swift; sourceTree = "<group>"; };
+		0307251F25B5F12500473311 /* NBNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBNetwork.swift; sourceTree = "<group>"; };
+		0307252825B5F20800473311 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0307252D25B5F22800473311 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		0307253225B5F2F200473311 /* AppNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetwork.swift; sourceTree = "<group>"; };
+		0307254025B5F3A200473311 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		0307255225B5FF2800473311 /* LBC_ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_ItemTests.swift; sourceTree = "<group>"; };
 		039AD63D25B5DADE0000ECA1 /* LBC Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LBC Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039AD64025B5DADE0000ECA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		039AD64425B5DADE0000ECA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0307252E25B5F22800473311 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +93,27 @@
 			children = (
 				0307250D25B5EB0500473311 /* UILabel+Extension.swift */,
 				0307251825B5EDCD00473311 /* AppBaseViewController.swift */,
+				0307251F25B5F12500473311 /* NBNetwork.swift */,
+				0307253225B5F2F200473311 /* AppNetwork.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0307252725B5F20800473311 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0307252D25B5F22800473311 /* CoreServices.framework */,
+				0307252825B5F20800473311 /* MobileCoreServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0307253F25B5F39300473311 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0307254025B5F3A200473311 /* Item.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		039AD63425B5DADE0000ECA1 = {
@@ -92,6 +123,7 @@
 				039AD65625B5DADF0000ECA1 /* LBC SampleTests */,
 				039AD66125B5DADF0000ECA1 /* LBC SampleUITests */,
 				039AD63E25B5DADE0000ECA1 /* Products */,
+				0307252725B5F20800473311 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +140,7 @@
 		039AD63F25B5DADE0000ECA1 /* LBC Sample */ = {
 			isa = PBXGroup;
 			children = (
+				0307253F25B5F39300473311 /* Model */,
 				0307250C25B5EAEA00473311 /* Utils */,
 				039AD64025B5DADE0000ECA1 /* AppDelegate.swift */,
 				039AD64425B5DADE0000ECA1 /* ViewController.swift */,
@@ -123,6 +156,7 @@
 			children = (
 				039AD65725B5DADF0000ECA1 /* LBC_SampleTests.swift */,
 				039AD65925B5DADF0000ECA1 /* Info.plist */,
+				0307255225B5FF2800473311 /* LBC_ItemTests.swift */,
 			);
 			path = "LBC SampleTests";
 			sourceTree = "<group>";
@@ -265,8 +299,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0307252025B5F12500473311 /* NBNetwork.swift in Sources */,
 				039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */,
+				0307253325B5F2F200473311 /* AppNetwork.swift in Sources */,
 				0307251925B5EDCD00473311 /* AppBaseViewController.swift in Sources */,
+				0307254125B5F3A200473311 /* Item.swift in Sources */,
 				0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */,
 				039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */,
 			);
@@ -276,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0307255325B5FF2800473311 /* LBC_ItemTests.swift in Sources */,
 				039AD65825B5DADF0000ECA1 /* LBC_SampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -439,7 +477,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7XBJ3PC59;
 				INFOPLIST_FILE = "LBC Sample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,7 +496,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7XBJ3PC59;
 				INFOPLIST_FILE = "LBC Sample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,7 +515,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7XBJ3PC59;
 				INFOPLIST_FILE = "LBC SampleTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,7 +536,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7XBJ3PC59;
 				INFOPLIST_FILE = "LBC SampleTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
