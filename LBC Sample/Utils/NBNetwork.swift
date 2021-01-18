@@ -7,13 +7,9 @@
 //
 
 import Foundation
+import CoreServices
 
-
-public class NBNetwork2: NSObject {
-    public static let Reachability = try? NBReachability(hostname: "google.com")
-
-//    public var didStartActivityAction: (() -> Void)?
-//    public var didStopActivityAction: (() -> Void)?
+public class NBNetwork: NSObject {
     
     private var requests = [Int: Request]()
     private var dispatchGroup = [String: DispatchGroup]()
@@ -34,20 +30,6 @@ public class NBNetwork2: NSObject {
     
     private func prepare(_ request: Request) {
         self.requests[request.identifier] = request
-        if #available(iOS 11.0, *) {
-            request.task.progress.addObserver(self,
-                                              forKeyPath: "fractionCompleted",
-                                              options: .new,
-                                              context: UnsafeMutableRawPointer(Unmanaged.passUnretained(request).toOpaque()))
-        }
-    }
-    
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if #available(iOS 11.0, *) {
-     // from: https://stackoverflow.com/questions/33294620/how-to-cast-self-to-unsafemutablepointervoid-type-in-swift
-            let req = Unmanaged<Request>.fromOpaque(context!).takeUnretainedValue()
-      //  print("Change on \(keyPath): \(req.task.countOfBytesSent)")
-        }
     }
     
     public func start(_ request: Request, progressAction: Request.ProgressAction? = nil, completeAction: @escaping Request.CompletionAction) {
@@ -56,8 +38,6 @@ public class NBNetwork2: NSObject {
         
         self.enterGroup(request: request)
         request.task.resume()
-        
-//        self.didStartActivityAction?()
     }
     
     private func clean(_ request: Request) {
@@ -111,20 +91,6 @@ public class NBNetwork2: NSObject {
     
     public func post(urlRequest: URLRequest, queryParameters: [String: String]? = nil) -> Request {
         var mutatedRequest = URLRequest(urlRequest, httpMethod: "POST", queryParameters: queryParameters)
-        
-//        if let queryParameters = queryParameters,
-//        queryParameters.count > 0 {
-//            var queryString = ""
-//            var separator = "?"
-//            for (key, value) in queryParameters {
-//                queryString += String(format: "%@%@=%@", separator, key, value)
-//                separator = "&"
-//            }
-//            if let urlString = urlRequest.url?.absoluteString,
-//                let percentQuery = queryString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-//            mutableRequest.url = URL(string: urlString + percentQuery)
-//            }
-//        }
         
         mutatedRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "content-type")
         
@@ -342,7 +308,7 @@ public class NBNetwork2: NSObject {
 // URLSessionTask Delegate
 //================================================================================
 
-extension NBNetwork2: URLSessionTaskDelegate {
+extension NBNetwork: URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         guard let req = self.requests[task.taskIdentifier] else { return }
         
@@ -353,7 +319,6 @@ extension NBNetwork2: URLSessionTaskDelegate {
         guard let req = self.requests[task.taskIdentifier] else { return }
         
         req.completeAction?(req, req.response, error)
-//        self.didStopActivityAction?()
         self.leaveGroup(request: req)
         
         self.clean(req)
@@ -364,7 +329,7 @@ extension NBNetwork2: URLSessionTaskDelegate {
 // URLSessionData Delegate
 //================================================================================
 
-extension NBNetwork2: URLSessionDataDelegate {
+extension NBNetwork: URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         completionHandler(.allow)
     }
@@ -380,7 +345,7 @@ extension NBNetwork2: URLSessionDataDelegate {
 // URLSessionDownload Delegate
 //================================================================================
 
-extension NBNetwork2: URLSessionDownloadDelegate {
+extension NBNetwork: URLSessionDownloadDelegate {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let req = self.requests[downloadTask.taskIdentifier] else { return }
         
@@ -413,7 +378,7 @@ extension NBNetwork2: URLSessionDownloadDelegate {
 // URL Session Delegate methods
 //================================================================================
 
-extension NBNetwork2: URLSessionDelegate {
+extension NBNetwork: URLSessionDelegate {
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         self.sessionDelegate?.urlSession?(session, didBecomeInvalidWithError: error)
     }
@@ -436,8 +401,8 @@ extension NBNetwork2: URLSessionDelegate {
 // Dispatch group methods
 //================================================================================
 
-public extension NBNetwork2 {
-    typealias GroupCompletionAction = (_ network: NBNetwork2, _ groupId: String) -> Void
+public extension NBNetwork {
+    typealias GroupCompletionAction = (_ network: NBNetwork, _ groupId: String) -> Void
     
     func declareGroup(groupId: String) {
         guard self.dispatchGroup[groupId] == nil else { return }
@@ -472,11 +437,6 @@ public extension NBNetwork2 {
 }
 
 extension URLRequest {
-//    convenience init(url: URL, queryParameters: [String: String]?) {
-//        let req = init(url: url)
-//        req.addQueryParameters(queryParameters)
-//        return req
-//    }
     
     fileprivate init(_ urlRequest: URLRequest, httpMethod: String?, queryParameters: [String: String]?) {
         self = urlRequest
@@ -505,4 +465,42 @@ extension URLRequest {
 
 public extension HTTPURLResponse {
     var statusCodeIsOk: Bool { return self.statusCode >= 200 && self.statusCode < 300 }
+}
+
+public extension String {
+    static var unique: String { ProcessInfo.processInfo.globallyUniqueString }
+    var json: Any? { return self.data(using: .utf8)?.json }
+}
+
+public extension Data {
+    var json: Any? { return try? JSONSerialization.jsonObject(with: self, options: []) }
+}
+
+public class JsonConvert {
+    public static func toData(_ anyObj: Any) -> Data? { return try? JSONSerialization.data(withJSONObject: anyObj, options: []) }
+    public static func toString(_ anyObj: Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: anyObj, options: []) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}
+
+
+
+public class MimeType {
+    static let Unknown = "application/octet-stream"
+    
+    static func from(filepath: String) -> String {
+        let fileExtension = (filepath as NSString).pathExtension
+   
+        if( fileExtension.count < 1 ) { return Self.Unknown }
+   
+        var MIMEType: Unmanaged<CFString>?
+        
+    // from: https://stackoverflow.com/a/2439038/399439
+        if let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil) {
+            MIMEType = UTTypeCopyPreferredTagWithClass(UTI.takeRetainedValue(), kUTTagClassMIMEType)
+        }
+        
+        return (MIMEType != nil) ? (MIMEType!.takeRetainedValue() as String) : Self.Unknown
+    }
 }

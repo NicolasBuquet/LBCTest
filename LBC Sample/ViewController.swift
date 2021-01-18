@@ -25,6 +25,10 @@ class ViewController: AppBaseViewController {
         ]
 
         NSLayoutConstraint.activate(constraints)
+        
+        AppNetwork.shared.fetchItemList { (items, error) in
+            print(items?.count)
+        }
     }
 
 }
