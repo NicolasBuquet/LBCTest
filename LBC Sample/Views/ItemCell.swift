@@ -35,11 +35,39 @@ class ItemCell: UICollectionViewCell {
     }()
     
     let title: UILabel = {
-        let lbl = UILabel(text: "Items List")
+        let lbl = UILabel(text: "<title>")
         lbl.font = UI.itemCellTitleFont
         lbl.numberOfLines = 2
         lbl.textColor = .text
         return lbl
+    }()
+    
+    let price: UILabel = {
+        let lbl = UILabel(text: "<Price>")
+        lbl.font = UI.itemCellPriceFont
+        lbl.numberOfLines = 1
+        lbl.textColor = .main
+        return lbl
+    }()
+    
+    private var localePriceString: String? {
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        // localize to your grouping and decimal separator
+        currencyFormatter.locale = Locale(identifier: "fr_FR")
+        if let price = self.item?.price {
+            return currencyFormatter.string(from: NSNumber(value: price))
+        }
+        else {
+            return nil
+        }
+    }
+    
+    let categoryBadge: Badge = {
+        let badge = Badge(frame: .zero)
+        badge.text = "<Category>"
+        return badge
     }()
     
     override init(frame: CGRect) {
@@ -48,22 +76,38 @@ class ItemCell: UICollectionViewCell {
         self.backgroundColor = .background
         self.addSubview(self.photo)
         self.addSubview(self.imageLoader)
+        self.addSubview(self.price)
+        self.addSubview(self.categoryBadge)
         self.addSubview(self.title)
         
         self.layoutContent()
     }
     
     private func layoutContent() {
+//        let priceWidthConstraint =
+//        priceWidthConstraint.priority = UILayoutPriority(1000)
         let constraints = [
             self.photo.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
             self.photo.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
             self.photo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.photo.topAnchor.constraint(equalTo: self.topAnchor),
+            
             self.imageLoader.centerXAnchor.constraint(equalTo: self.photo.centerXAnchor),
             self.imageLoader.centerYAnchor.constraint(equalTo: self.photo.centerYAnchor),
+            
+            self.price.topAnchor.constraint(equalTo: self.topAnchor),
+            self.price.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.price.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
+            self.price.widthAnchor.constraint(greaterThanOrEqualToConstant: 32.0),
+            
+            self.categoryBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            self.categoryBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            self.categoryBadge.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
+            self.categoryBadge.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4.0),
+            
             self.title.leadingAnchor.constraint(equalTo: self.photo.trailingAnchor, constant: 16.0),
-            self.title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
-            self.title.centerYAnchor.constraint(equalTo: self.photo.centerYAnchor)
+            self.title.trailingAnchor.constraint(equalTo: self.price.leadingAnchor, constant: -16.0),
+            self.title.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -87,7 +131,10 @@ class ItemCell: UICollectionViewCell {
         self.photoFetchRequest = nil
         self.imageLoader.stopAnimating()
         
+        self.price.text = self.localePriceString
         self.title.text = self.item?.title ?? "<no title>"
+        self.categoryBadge.text = self.item?.category?.name
+        self.categoryBadge.isHidden = self.categoryBadge.text == nil
         
         if let thumbUrl = self.item?.image.thumb {
         self.photoFetchRequest = AppNetwork.shared.fetchImage(imageUrlString: thumbUrl, { (data, error) in
@@ -105,4 +152,6 @@ class ItemCell: UICollectionViewCell {
             self.imageLoader.startAnimating()
         }
     }
+    
+    
 }
