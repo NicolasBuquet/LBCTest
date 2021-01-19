@@ -10,6 +10,8 @@ import UIKit
 
 class UI {
     static let itemCellTitleFont = UIFont.systemFont(ofSize: 14.0)
+    static let itemCellPriceFont = UIFont.boldSystemFont(ofSize: 18.0)
+    static let itemCellBadgeFont = UIFont.boldSystemFont(ofSize: 10.0)
 }
 
 extension UIColor {
