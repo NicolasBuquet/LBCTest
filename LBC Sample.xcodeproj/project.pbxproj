@@ -24,6 +24,7 @@
 		0380C7AF25B6E526007F53A6 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7AE25B6E526007F53A6 /* ItemCell.swift */; };
 		0380C7B425B6F2A2007F53A6 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7B325B6F2A2007F53A6 /* AppNavigationController.swift */; };
 		0380C7C525B6FB89007F53A6 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7C425B6FB89007F53A6 /* UI.swift */; };
+		0380C7CF25B75361007F53A6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7CE25B75361007F53A6 /* Badge.swift */; };
 		039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64025B5DADE0000ECA1 /* AppDelegate.swift */; };
 		039AD64A25B5DADF0000ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64925B5DADF0000ECA1 /* Assets.xcassets */; };
 		039AD64D25B5DADF0000ECA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64B25B5DADF0000ECA1 /* LaunchScreen.storyboard */; };
@@ -63,6 +64,7 @@
 		0380C7AE25B6E526007F53A6 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		0380C7B325B6F2A2007F53A6 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		0380C7C425B6FB89007F53A6 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		0380C7CE25B75361007F53A6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		039AD63D25B5DADE0000ECA1 /* LBC Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LBC Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039AD64025B5DADE0000ECA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		039AD64925B5DADF0000ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				0380C7AE25B6E526007F53A6 /* ItemCell.swift */,
+				0380C7CE25B75361007F53A6 /* Badge.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				0380C7B425B6F2A2007F53A6 /* AppNavigationController.swift in Sources */,
 				0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */,
 				0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */,
+				0380C7CF25B75361007F53A6 /* Badge.swift in Sources */,
 				039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
