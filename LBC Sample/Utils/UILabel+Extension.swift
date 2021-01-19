@@ -13,8 +13,8 @@ extension UILabel {
     convenience init(text: String?) {
         self.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.text = "Application launched"
-        self.textColor = UIColor(named: "mainColor")
+        self.text = text
+        self.textColor = .main
         self.sizeToFit()
     }
 }
