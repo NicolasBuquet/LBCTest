@@ -19,6 +19,7 @@ class ItemsViewController: AppBaseViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .background
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = true
         
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: Self.CELL_REUSE_ID)
         
@@ -57,8 +58,7 @@ class ItemsViewController: AppBaseViewController {
                 // TODO: Display alert
                 return
             }
-            self.data.removeAll()
-            self.data.append(contentsOf: items)
+            self.data = items
             self.collectionView.reloadData()
         }
     }
