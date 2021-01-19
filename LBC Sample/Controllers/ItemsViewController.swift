@@ -21,6 +21,10 @@ class ItemsViewController: AppBaseViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: Self.CELL_REUSE_ID)
+        
+        // Add the refresh control to your UIScrollView object.
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action:#selector(pullToRefresh), for: .valueChanged)
         return collectionView
     }()
     
@@ -35,6 +39,15 @@ class ItemsViewController: AppBaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func pullToRefresh() {
+        self.reloadData()
+        
+        // Dismiss the refresh control.
+           DispatchQueue.main.async {
+              self.collectionView.refreshControl?.endRefreshing()
+           }
     }
     
     private func reloadData() {
