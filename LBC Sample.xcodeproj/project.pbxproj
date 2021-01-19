@@ -11,9 +11,15 @@
 		0307251925B5EDCD00473311 /* AppBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307251825B5EDCD00473311 /* AppBaseViewController.swift */; };
 		0307252025B5F12500473311 /* NBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307251F25B5F12500473311 /* NBNetwork.swift */; };
 		0307252E25B5F22800473311 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307252D25B5F22800473311 /* CoreServices.framework */; };
-		0307253325B5F2F200473311 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
 		0307254125B5F3A200473311 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307254025B5F3A200473311 /* Item.swift */; };
 		0307255325B5FF2800473311 /* LBC_ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307255225B5FF2800473311 /* LBC_ItemTests.swift */; };
+		0380C78025B6C5B9007F53A6 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C77F25B6C5B9007F53A6 /* AppData.swift */; };
+		0380C78825B6C675007F53A6 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C77F25B6C5B9007F53A6 /* AppData.swift */; };
+		0380C78C25B6C67A007F53A6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307254025B5F3A200473311 /* Item.swift */; };
+		0380C79025B6C67F007F53A6 /* NBNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307251F25B5F12500473311 /* NBNetwork.swift */; };
+		0380C79425B6C681007F53A6 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
+		0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
+		0380C7A025B6CC6A007F53A6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C79F25B6CC6A007F53A6 /* Category.swift */; };
 		039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64025B5DADE0000ECA1 /* AppDelegate.swift */; };
 		039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64425B5DADE0000ECA1 /* ViewController.swift */; };
 		039AD64A25B5DADF0000ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64925B5DADF0000ECA1 /* Assets.xcassets */; };
@@ -48,6 +54,8 @@
 		0307253225B5F2F200473311 /* AppNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetwork.swift; sourceTree = "<group>"; };
 		0307254025B5F3A200473311 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0307255225B5FF2800473311 /* LBC_ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_ItemTests.swift; sourceTree = "<group>"; };
+		0380C77F25B6C5B9007F53A6 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		0380C79F25B6CC6A007F53A6 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		039AD63D25B5DADE0000ECA1 /* LBC Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LBC Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039AD64025B5DADE0000ECA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		039AD64425B5DADE0000ECA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -93,8 +101,6 @@
 			children = (
 				0307250D25B5EB0500473311 /* UILabel+Extension.swift */,
 				0307251825B5EDCD00473311 /* AppBaseViewController.swift */,
-				0307251F25B5F12500473311 /* NBNetwork.swift */,
-				0307253225B5F2F200473311 /* AppNetwork.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -112,8 +118,27 @@
 			isa = PBXGroup;
 			children = (
 				0307254025B5F3A200473311 /* Item.swift */,
+				0380C79F25B6CC6A007F53A6 /* Category.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0380C77E25B6C59D007F53A6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0307253F25B5F39300473311 /* Model */,
+				0380C77F25B6C5B9007F53A6 /* AppData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0380C78425B6C5BF007F53A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0307251F25B5F12500473311 /* NBNetwork.swift */,
+				0307253225B5F2F200473311 /* AppNetwork.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		039AD63425B5DADE0000ECA1 = {
@@ -140,7 +165,8 @@
 		039AD63F25B5DADE0000ECA1 /* LBC Sample */ = {
 			isa = PBXGroup;
 			children = (
-				0307253F25B5F39300473311 /* Model */,
+				0380C78425B6C5BF007F53A6 /* Network */,
+				0380C77E25B6C59D007F53A6 /* Data */,
 				0307250C25B5EAEA00473311 /* Utils */,
 				039AD64025B5DADE0000ECA1 /* AppDelegate.swift */,
 				039AD64425B5DADE0000ECA1 /* ViewController.swift */,
@@ -301,10 +327,12 @@
 			files = (
 				0307252025B5F12500473311 /* NBNetwork.swift in Sources */,
 				039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */,
-				0307253325B5F2F200473311 /* AppNetwork.swift in Sources */,
+				0380C78025B6C5B9007F53A6 /* AppData.swift in Sources */,
 				0307251925B5EDCD00473311 /* AppBaseViewController.swift in Sources */,
 				0307254125B5F3A200473311 /* Item.swift in Sources */,
+				0380C7A025B6CC6A007F53A6 /* Category.swift in Sources */,
 				0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */,
+				0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */,
 				039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,8 +341,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0380C78C25B6C67A007F53A6 /* Item.swift in Sources */,
+				0380C79025B6C67F007F53A6 /* NBNetwork.swift in Sources */,
+				0380C79425B6C681007F53A6 /* AppNetwork.swift in Sources */,
 				0307255325B5FF2800473311 /* LBC_ItemTests.swift in Sources */,
 				039AD65825B5DADF0000ECA1 /* LBC_SampleTests.swift in Sources */,
+				0380C78825B6C675007F53A6 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

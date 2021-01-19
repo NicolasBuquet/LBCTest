@@ -26,8 +26,13 @@ class ViewController: AppBaseViewController {
 
         NSLayoutConstraint.activate(constraints)
         
-        AppNetwork.shared.fetchItemList { (items, error) in
+        AppData.shared.fetchItems { (items, error) in
             print(items?.count)
+            print(error)
+        }
+        AppData.shared.fetchCategories { (categories, error) in
+            print(categories)
+            print(error)
         }
     }
 
