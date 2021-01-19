@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: CGRect(origin:.zero, size: UIScreen.main.bounds.size))
 
-        self.window?.rootViewController = ViewController()
+        self.window?.rootViewController = AppNavigationController(rootViewController: ItemsViewController())
         
         self.window?.makeKeyAndVisible()
 

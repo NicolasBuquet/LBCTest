@@ -20,6 +20,9 @@ class AppBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(named: "backgroundColor")
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.backgroundColor = .background
     }
+    
 }
