@@ -15,6 +15,7 @@ struct Item {
 
     let id: Int
     let categoryId: Int
+    let category: Category?
     let title: String
     let description: String
     let price: Float
@@ -65,6 +66,8 @@ extension Item: Decodable {
         else {
             self.image = (small: nil, thumb: nil)
         }
+        
+        self.category = AppData.shared.category(id: self.categoryId)
     }
 }
 
