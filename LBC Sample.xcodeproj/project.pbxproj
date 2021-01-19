@@ -20,8 +20,11 @@
 		0380C79425B6C681007F53A6 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
 		0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307253225B5F2F200473311 /* AppNetwork.swift */; };
 		0380C7A025B6CC6A007F53A6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C79F25B6CC6A007F53A6 /* Category.swift */; };
+		0380C7A625B6DE61007F53A6 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7A525B6DE61007F53A6 /* ItemsViewController.swift */; };
+		0380C7AF25B6E526007F53A6 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7AE25B6E526007F53A6 /* ItemCell.swift */; };
+		0380C7B425B6F2A2007F53A6 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7B325B6F2A2007F53A6 /* AppNavigationController.swift */; };
+		0380C7C525B6FB89007F53A6 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380C7C425B6FB89007F53A6 /* UI.swift */; };
 		039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64025B5DADE0000ECA1 /* AppDelegate.swift */; };
-		039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD64425B5DADE0000ECA1 /* ViewController.swift */; };
 		039AD64A25B5DADF0000ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64925B5DADF0000ECA1 /* Assets.xcassets */; };
 		039AD64D25B5DADF0000ECA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039AD64B25B5DADF0000ECA1 /* LaunchScreen.storyboard */; };
 		039AD65825B5DADF0000ECA1 /* LBC_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AD65725B5DADF0000ECA1 /* LBC_SampleTests.swift */; };
@@ -56,9 +59,12 @@
 		0307255225B5FF2800473311 /* LBC_ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_ItemTests.swift; sourceTree = "<group>"; };
 		0380C77F25B6C5B9007F53A6 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		0380C79F25B6CC6A007F53A6 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		0380C7A525B6DE61007F53A6 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		0380C7AE25B6E526007F53A6 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		0380C7B325B6F2A2007F53A6 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
+		0380C7C425B6FB89007F53A6 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		039AD63D25B5DADE0000ECA1 /* LBC Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LBC Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039AD64025B5DADE0000ECA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		039AD64425B5DADE0000ECA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		039AD64925B5DADF0000ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		039AD64C25B5DADF0000ECA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		039AD64E25B5DADF0000ECA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 			children = (
 				0307250D25B5EB0500473311 /* UILabel+Extension.swift */,
 				0307251825B5EDCD00473311 /* AppBaseViewController.swift */,
+				0380C7B325B6F2A2007F53A6 /* AppNavigationController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -141,6 +148,22 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		0380C7A425B6DE2F007F53A6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0380C7A525B6DE61007F53A6 /* ItemsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0380C7AD25B6E514007F53A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0380C7AE25B6E526007F53A6 /* ItemCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		039AD63425B5DADE0000ECA1 = {
 			isa = PBXGroup;
 			children = (
@@ -165,11 +188,13 @@
 		039AD63F25B5DADE0000ECA1 /* LBC Sample */ = {
 			isa = PBXGroup;
 			children = (
+				0380C7C425B6FB89007F53A6 /* UI.swift */,
 				0380C78425B6C5BF007F53A6 /* Network */,
 				0380C77E25B6C59D007F53A6 /* Data */,
+				0380C7A425B6DE2F007F53A6 /* Controllers */,
+				0380C7AD25B6E514007F53A6 /* Views */,
 				0307250C25B5EAEA00473311 /* Utils */,
 				039AD64025B5DADE0000ECA1 /* AppDelegate.swift */,
-				039AD64425B5DADE0000ECA1 /* ViewController.swift */,
 				039AD64925B5DADF0000ECA1 /* Assets.xcassets */,
 				039AD64B25B5DADF0000ECA1 /* LaunchScreen.storyboard */,
 				039AD64E25B5DADF0000ECA1 /* Info.plist */,
@@ -326,11 +351,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0307252025B5F12500473311 /* NBNetwork.swift in Sources */,
-				039AD64525B5DADE0000ECA1 /* ViewController.swift in Sources */,
 				0380C78025B6C5B9007F53A6 /* AppData.swift in Sources */,
 				0307251925B5EDCD00473311 /* AppBaseViewController.swift in Sources */,
 				0307254125B5F3A200473311 /* Item.swift in Sources */,
+				0380C7AF25B6E526007F53A6 /* ItemCell.swift in Sources */,
+				0380C7C525B6FB89007F53A6 /* UI.swift in Sources */,
+				0380C7A625B6DE61007F53A6 /* ItemsViewController.swift in Sources */,
 				0380C7A025B6CC6A007F53A6 /* Category.swift in Sources */,
+				0380C7B425B6F2A2007F53A6 /* AppNavigationController.swift in Sources */,
 				0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */,
 				0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */,
 				039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */,

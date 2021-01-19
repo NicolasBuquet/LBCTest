@@ -27,18 +27,18 @@ class AppNetwork {
     
     public typealias FetchCompletion = (_ data: Data?, _ error: Error?) -> Void
         
-    func fetchItems(_ completion: @escaping FetchCompletion) {
-        self.get(Self.FETCH_ITEMS_URL, globalError: AppNetworkError.fetchItemsError, completion: completion)
+    func fetchItems(_ completion: @escaping FetchCompletion) -> NBNetwork.Request {
+        return self.get(Self.FETCH_ITEMS_URL, globalError: AppNetworkError.fetchItemsError, completion: completion)
     }
     
-    func fetchCategories(_ completion: @escaping FetchCompletion) {
-        self.get(Self.FETCH_CATEGORIES_URL, globalError: AppNetworkError.fetchItemsError, completion: completion)
+    func fetchCategories(_ completion: @escaping FetchCompletion) -> NBNetwork.Request {
+        return self.get(Self.FETCH_CATEGORIES_URL, globalError: AppNetworkError.fetchItemsError, completion: completion)
     }
 
-    func fetchImage(imageUrlString: String, _ completion: @escaping FetchCompletion) {
+    func fetchImage(imageUrlString: String, _ completion: @escaping FetchCompletion) -> NBNetwork.Request {
         // TODO: look in cache and call completion if found.
         
-        self.get(imageUrlString, globalError: AppNetworkError.fetchImageError) { data, error in
+        return self.get(imageUrlString, globalError: AppNetworkError.fetchImageError) { data, error in
             guard let data = data
             else {
                 completion(nil, error ?? AppNetworkError.fetchImageError)
@@ -50,7 +50,7 @@ class AppNetwork {
         }
     }
 
-    private func get(_ urlString: String, globalError: AppNetworkError, completion: @escaping FetchCompletion) {
+    private func get(_ urlString: String, globalError: AppNetworkError, completion: @escaping FetchCompletion) -> NBNetwork.Request {
         let req = self.network.get(urlString: urlString)!
         self.network.start(req) { (request, response, error) in
             
@@ -58,11 +58,16 @@ class AppNetwork {
                   responseIsOk,
                 let data = request.dataReceived
             else {
-                completion(nil, error ?? globalError)
+                DispatchQueue.main.async {
+                    completion(nil, error ?? globalError)
+                }
                 return
             }
-            completion(data, nil)
+            DispatchQueue.main.async {
+                completion(data, nil)
+            }
         }
+        return req
     }
 
 }

@@ -273,6 +273,10 @@ public class NBNetwork: NSObject {
             super.init()
         }
         
+        func cancel() {
+            self.task.cancel() // Will call delegate method urlSession(_:task:didCompleteWithError:) with Error NSURLErrorCancelled.
+        }
+        
         //================================================================================
         // STORE RETURNED DATA
         //================================================================================
