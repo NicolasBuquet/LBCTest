@@ -32,8 +32,11 @@ class AppNavigationController: UINavigationController {
     private func _customize() {
         self.navigationBar.barTintColor = .main
         self.navigationBar.isTranslucent = false
-        self.navigationBar.tintColor = .white
-//        self.navigationBar.titleTextAttributes = NSAttributedString.attributedStyle(withName: "text/navigationBar/title")
+        self.navigationBar.tintColor = .navigationItem
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UI.navigationBarTitle,
+            NSAttributedString.Key.foregroundColor: UIColor.navigationItem
+        ]
     }
     
     override func viewDidLoad() {
