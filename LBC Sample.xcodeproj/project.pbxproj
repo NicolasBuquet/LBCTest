@@ -35,6 +35,7 @@
 		03C618D025B834BF008419EF /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307252D25B5F22800473311 /* CoreServices.framework */; };
 		03C618DD25B834F0008419EF /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307252D25B5F22800473311 /* CoreServices.framework */; };
 		03C618E225B836A1008419EF /* TestsItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 03C618E125B836A1008419EF /* TestsItems.json */; };
+		03C618EA25B8745C008419EF /* FilterPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C618E925B8745C008419EF /* FilterPane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		03C618B625B83228008419EF /* TestsCategories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsCategories.json; sourceTree = "<group>"; };
 		03C618BE25B8325B008419EF /* LBC_CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_CategoryTests.swift; sourceTree = "<group>"; };
 		03C618E125B836A1008419EF /* TestsItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsItems.json; sourceTree = "<group>"; };
+		03C618E925B8745C008419EF /* FilterPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				0380C7AE25B6E526007F53A6 /* ItemCell.swift */,
 				0380C7CE25B75361007F53A6 /* Badge.swift */,
+				03C618E925B8745C008419EF /* FilterPane.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				0380C7B425B6F2A2007F53A6 /* AppNavigationController.swift in Sources */,
 				0307250E25B5EB0500473311 /* UILabel+Extension.swift in Sources */,
 				0380C79B25B6C6F6007F53A6 /* AppNetwork.swift in Sources */,
+				03C618EA25B8745C008419EF /* FilterPane.swift in Sources */,
 				0380C7CF25B75361007F53A6 /* Badge.swift in Sources */,
 				039AD64125B5DADE0000ECA1 /* AppDelegate.swift in Sources */,
 			);
