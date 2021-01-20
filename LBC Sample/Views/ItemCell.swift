@@ -73,7 +73,7 @@ class ItemCell: UICollectionViewCell {
     }
     
     let categoryBadge: Badge = {
-        let badge = Badge(frame: .zero)
+        let badge = Badge(.small)
         badge.text = "<Category>"
         return badge
     }()
