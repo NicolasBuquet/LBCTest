@@ -11,7 +11,8 @@ import Foundation
 class AppData {
     public typealias FetchItemsCompletion = (_ items: [Item]?, _ error: Error?) -> Void
     public typealias FetchCategoriesCompletion = (_ items: [ItemCategory]?, _ error: Error?) -> Void
-   
+    public typealias FetchDataCompletion = (_ success: Bool, _ error: Error?) -> Void
+    
     public static let shared = AppData()
     
     private let network = AppNetwork.shared
@@ -21,8 +22,23 @@ class AppData {
     
     
     init() {
+        
+    }
+    
+    func fetchData(completion: @escaping FetchDataCompletion) {
         self.fetchCategories { (categories, error) in
-            self.fetchItems { (items, error) in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                self.fetchItems { (items, error) in
+                    if let error = error {
+                        completion(false, error)
+                    }
+                    else {
+                        completion(true, nil)
+                    }
+                }
             }
         }
     }
