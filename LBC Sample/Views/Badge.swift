@@ -27,7 +27,7 @@ class Badge: UILabel {
     
     var isSelected = false {
         didSet {
-            self.backgroundColor = self.isSelected ? .red : self.baseColor
+            self.backgroundColor = self.isSelected ? .main : self.baseColor
         }
     }
     
