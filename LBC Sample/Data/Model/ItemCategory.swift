@@ -15,3 +15,9 @@ struct ItemCategory: Decodable {
         return try? Item.decoder.decode([ItemCategory].self, from: data)
     }
 }
+
+extension ItemCategory: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
