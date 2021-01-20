@@ -97,6 +97,12 @@ class AppData {
         return self.categories.first(where: { $0.id == id})
     }
     
+    public static func sortedItems(_ items: [Item]) -> [Item] {
+        // Sort on urgent first, secondly on creation date from newer to older
+        return items.sorted { ($0.isUrgent && !$1.isUrgent) || ($0.creationDate > $1.creationDate) }
+    }
+    
+
 }
 
 

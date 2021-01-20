@@ -30,6 +30,7 @@ class ItemsViewController: AppBaseViewController {
     }()
     
     var data = [Item]()
+    
     var filteredData = [Item]()
     var filterCategory: ItemCategory? {
         didSet {
@@ -43,7 +44,9 @@ class ItemsViewController: AppBaseViewController {
     
     override init() {
         super.init()
-        self.reloadData()
+        
+        self.data = AppData.sortedItems(AppData.shared.items)
+        self.filterData()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "leBonCoinNavBarTitle"))
 
@@ -82,7 +85,7 @@ class ItemsViewController: AppBaseViewController {
                 // TODO: Display alert
                 return
             }
-            self.data = items.sorted { $0.creationDate > $1.creationDate }
+            self.data = AppData.sortedItems(items)
             self.filterData()
         }
     }
