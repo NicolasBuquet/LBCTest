@@ -70,6 +70,8 @@ class ItemsViewController: AppBaseViewController {
         else {
             self.filteredData = self.data
         }
+        // Refresh UI (filterBarButton colored if filter active)
+        self.filterBarButton.tintColor = self.filterCategory == nil ? nil : .second
         self.collectionView.reloadData()
     }
     
