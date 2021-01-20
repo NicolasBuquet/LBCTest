@@ -75,7 +75,8 @@ class ItemCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .background
+        
+        self.backgroundColor = .white
         self.addSubview(self.photo)
         self.addSubview(self.imageLoader)
         self.addSubview(self.price)
@@ -83,39 +84,47 @@ class ItemCell: UICollectionViewCell {
         self.addSubview(self.proBadge)
         self.addSubview(self.title)
         
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 4.0
+        self.layer.shadowOpacity = 0.25
+        
         self.layoutContent()
     }
     
     private func layoutContent() {
-//        let priceWidthConstraint =
-//        priceWidthConstraint.priority = UILayoutPriority(1000)
+        
         let constraints = [
-            self.photo.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
-            self.photo.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
-            self.photo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.photo.topAnchor.constraint(equalTo: self.topAnchor),
+            // 4 px insets around image
+            self.photo.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0, constant: -8.0),
+            self.photo.widthAnchor.constraint(equalTo: self.photo.heightAnchor, multiplier: 1.0),
+            self.photo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4.0),
+            self.photo.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0),
             
             self.imageLoader.centerXAnchor.constraint(equalTo: self.photo.centerXAnchor),
             self.imageLoader.centerYAnchor.constraint(equalTo: self.photo.centerYAnchor),
             
+            // Price right aligned, centerY
             self.price.topAnchor.constraint(equalTo: self.topAnchor),
-            self.price.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.price.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4.0),
             self.price.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
             self.price.widthAnchor.constraint(greaterThanOrEqualToConstant: 32.0),
             
+            // Badges bottom aligned on photo.bottom
             self.categoryBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.categoryBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.categoryBadge.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
-            self.categoryBadge.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4.0),
+            self.categoryBadge.bottomAnchor.constraint(equalTo: self.photo.bottomAnchor, constant: -4.0),
             
             self.proBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.proBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.proBadge.leadingAnchor.constraint(equalTo: self.categoryBadge.trailingAnchor, constant: 8.0),
             self.proBadge.centerYAnchor.constraint(equalTo: self.categoryBadge.centerYAnchor),
             
+            // top aligned on photo.top
             self.title.leadingAnchor.constraint(equalTo: self.photo.trailingAnchor, constant: 16.0),
             self.title.trailingAnchor.constraint(equalTo: self.price.leadingAnchor, constant: -16.0),
-            self.title.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0)
+            self.title.topAnchor.constraint(equalTo: self.photo.topAnchor, constant: 4.0)
         ]
 
         NSLayoutConstraint.activate(constraints)
