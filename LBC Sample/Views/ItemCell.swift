@@ -34,6 +34,14 @@ class ItemCell: UICollectionViewCell {
         return aiView
     }()
     
+    static let urgentImage = UIImage(named: "urgent")! // load resource image only once.
+    
+    let urgentTag: UIImageView = {
+        let imageView = UIImageView(image: ItemCell.urgentImage)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let title: UILabel = {
         let lbl = UILabel(text: "<title>")
         lbl.font = UI.itemCellTitleFont
@@ -79,6 +87,7 @@ class ItemCell: UICollectionViewCell {
         self.backgroundColor = .white
         self.addSubview(self.photo)
         self.addSubview(self.imageLoader)
+        self.addSubview(self.urgentTag)
         self.addSubview(self.price)
         self.addSubview(self.categoryBadge)
         self.addSubview(self.proBadge)
@@ -100,7 +109,12 @@ class ItemCell: UICollectionViewCell {
             self.photo.widthAnchor.constraint(equalTo: self.photo.heightAnchor, multiplier: 1.0),
             self.photo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4.0),
             self.photo.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0),
-            
+
+            self.urgentTag.widthAnchor.constraint(equalTo: self.photo.widthAnchor, multiplier: 1.0),
+            self.urgentTag.heightAnchor.constraint(equalTo: self.urgentTag.widthAnchor, multiplier: ItemCell.urgentImage.size.height/ItemCell.urgentImage.size.width),
+            self.urgentTag.leadingAnchor.constraint(equalTo: self.photo.leadingAnchor, constant: 0.0),
+            self.urgentTag.topAnchor.constraint(equalTo: self.photo.topAnchor, constant: 0.0),
+
             self.imageLoader.centerXAnchor.constraint(equalTo: self.photo.centerXAnchor),
             self.imageLoader.centerYAnchor.constraint(equalTo: self.photo.centerYAnchor),
             
@@ -139,6 +153,7 @@ class ItemCell: UICollectionViewCell {
         self.title.text = nil
         self.photo.image = Self.noImage
         self.proBadge.isHidden = true // PRO badge is hidden by default
+        self.urgentTag.isHidden = true // Urgent tag is hidden by default
     }
     
     private func updateContent() {
@@ -148,7 +163,8 @@ class ItemCell: UICollectionViewCell {
         }
         self.photoFetchRequest = nil
         self.imageLoader.stopAnimating()
-        
+        self.urgentTag.isHidden = !(self.item?.isUrgent ?? false)
+       
         self.price.text = self.localePriceString
         self.title.text = self.item?.title ?? "<no title>"
         self.categoryBadge.text = self.item?.category?.name
