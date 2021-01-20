@@ -70,6 +70,8 @@ class ItemCell: UICollectionViewCell {
         return badge
     }()
     
+    let proBadge = Badge.pro()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +80,7 @@ class ItemCell: UICollectionViewCell {
         self.addSubview(self.imageLoader)
         self.addSubview(self.price)
         self.addSubview(self.categoryBadge)
+        self.addSubview(self.proBadge)
         self.addSubview(self.title)
         
         self.layoutContent()
@@ -105,6 +108,11 @@ class ItemCell: UICollectionViewCell {
             self.categoryBadge.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
             self.categoryBadge.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4.0),
             
+            self.proBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            self.proBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            self.proBadge.leadingAnchor.constraint(equalTo: self.categoryBadge.trailingAnchor, constant: 8.0),
+            self.proBadge.centerYAnchor.constraint(equalTo: self.categoryBadge.centerYAnchor),
+            
             self.title.leadingAnchor.constraint(equalTo: self.photo.trailingAnchor, constant: 16.0),
             self.title.trailingAnchor.constraint(equalTo: self.price.leadingAnchor, constant: -16.0),
             self.title.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0)
@@ -121,6 +129,7 @@ class ItemCell: UICollectionViewCell {
         super.prepareForReuse()
         self.title.text = nil
         self.photo.image = Self.noImage
+        self.proBadge.isHidden = true // PRO badge is hidden by default
     }
     
     private func updateContent() {
@@ -135,6 +144,7 @@ class ItemCell: UICollectionViewCell {
         self.title.text = self.item?.title ?? "<no title>"
         self.categoryBadge.text = self.item?.category?.name
         self.categoryBadge.isHidden = self.categoryBadge.text == nil
+        self.proBadge.isHidden = !(self.item?.isPro ?? false)
         
         if let thumbUrl = self.item?.image.thumb {
         self.photoFetchRequest = AppNetwork.shared.fetchImage(imageUrlString: thumbUrl, { (data, error) in

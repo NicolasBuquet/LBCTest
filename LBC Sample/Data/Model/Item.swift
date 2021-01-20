@@ -27,6 +27,8 @@ struct Item {
     
     let siret: String?
     
+    var isPro: Bool { return self.siret != nil }
+    
     var isImagePresent: Bool { self.image.small != nil && self.image.thumb != nil }
     
     static func parse(from data: Data) -> [Item]? {

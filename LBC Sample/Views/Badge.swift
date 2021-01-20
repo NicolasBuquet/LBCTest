@@ -11,6 +11,13 @@ import UIKit
 class Badge: UILabel {
     static private let contentInsets = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
     
+    static func pro() -> Badge {
+        let proBadge = Badge(frame: .zero)
+        proBadge.backgroundColor = .main
+        proBadge.text = "PRO"
+        return proBadge
+    }
+    
     required override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
