@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import LBC_Sample
 
 class LBC_CategoryTests: XCTestCase {
 
@@ -22,6 +23,18 @@ class LBC_CategoryTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
+    func testCategoriesLoadingAndParsing() throws {
+        
+        print("Unit test: Categories Loading and Parsing started")
+        
+        let url = Bundle(for: LBC_CategoryTests.self).url(forResource: "TestsCategories", withExtension: "json")!
+        let categoriesData = try Data(contentsOf: url)
+        let categories = ItemCategory.parse(from: categoriesData)
+        XCTAssert(categories?.count == 11, "CategoriesLoadingAndParsing: failure to load Json")
+        
+        print("Unit test: Categories Loading and Parsing ended")
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
