@@ -25,6 +25,10 @@ class AppNavigationController: UINavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     private func _customize() {
         self.navigationBar.barTintColor = .main
         self.navigationBar.isTranslucent = false
