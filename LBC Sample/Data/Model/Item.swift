@@ -15,7 +15,7 @@ struct Item {
 
     let id: Int
     let categoryId: Int
-    let category: Category?
+    let category: ItemCategory?
     let title: String
     let description: String
     let price: Float
@@ -28,6 +28,10 @@ struct Item {
     let siret: String?
     
     var isImagePresent: Bool { self.image.small != nil && self.image.thumb != nil }
+    
+    static func parse(from data: Data) -> [Item]? {
+        return try? Item.decoder.decode([Item].self, from: data)
+    }
 }
 
 extension Item: Decodable {

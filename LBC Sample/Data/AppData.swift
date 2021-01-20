@@ -10,13 +10,13 @@ import Foundation
 /// AppData class is designed to be the unique access point to application's data (actually items ans item's category)
 class AppData {
     public typealias FetchItemsCompletion = (_ items: [Item]?, _ error: Error?) -> Void
-    public typealias FetchCategoriesCompletion = (_ items: [Category]?, _ error: Error?) -> Void
+    public typealias FetchCategoriesCompletion = (_ items: [ItemCategory]?, _ error: Error?) -> Void
    
     public static let shared = AppData()
     
     private let network = AppNetwork.shared
     
-    private var categories = [Category]()
+    private var categories = [ItemCategory]()
     private var items = [Item]()
     
     
@@ -49,7 +49,7 @@ class AppData {
         let _ = self.network.fetchItems { (data, error) in
             guard error == nil,
                   let data = data,
-                  let items = try? Item.decoder.decode([Item].self, from: data)
+                  let items = Item.parse(from: data)
             else {
                 completion(nil, error)
                 return
@@ -65,7 +65,7 @@ class AppData {
         let _ = self.network.fetchCategories { (data, error) in
             guard error == nil,
                   let data = data,
-                  let categories = try? JSONDecoder().decode([Category].self, from: data)
+                  let categories = ItemCategory.parse(from: data)
                  
             else {
                 completion(nil, error)
@@ -77,7 +77,7 @@ class AppData {
         }
     }
     
-    func category(id: Int) -> Category? {
+    func category(id: Int) -> ItemCategory? {
         return self.categories.first(where: { $0.id == id})
     }
     
