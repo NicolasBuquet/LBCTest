@@ -16,8 +16,8 @@ class AppData {
     
     private let network = AppNetwork.shared
     
-    private var categories = [ItemCategory]()
-    private var items = [Item]()
+    public var categories = [ItemCategory]()
+    public var items = [Item]()
     
     
     init() {

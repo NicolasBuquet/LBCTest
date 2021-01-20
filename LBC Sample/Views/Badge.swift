@@ -9,23 +9,64 @@ import Foundation
 import UIKit
 
 class Badge: UILabel {
-    static private let contentInsets = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
+    static private let contentInsetsSmall = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
+    static private let contentInsetsBig = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
     
     static func pro() -> Badge {
-        let proBadge = Badge(frame: .zero)
-        proBadge.backgroundColor = .main
+        let proBadge = Badge(.small)
+        proBadge.baseColor = .main
         proBadge.text = "PRO"
         return proBadge
     }
     
-    required override init(frame: CGRect) {
-        super.init(frame: frame)
+    enum Size {
+        case small, big
+    }
+    
+    private let contentInsets: UIEdgeInsets
+    
+    var isSelected = false {
+        didSet {
+            self.backgroundColor = self.isSelected ? .main : self.baseColor
+        }
+    }
+    
+    public var isActionEnabled = false {
+        didSet {
+            if self.isActionEnabled {
+                self.addGestureRecognizer(self.tapGesture)
+                self.isUserInteractionEnabled = true
+            }
+            else {
+                self.removeGestureRecognizer(self.tapGesture)
+                self.isUserInteractionEnabled = false
+            }
+        }
+    }
+    
+    lazy var tapGesture: UITapGestureRecognizer = { [unowned self] in
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(select(gestureRecognizer:)))
+        return gesture
+    }()
+    
+    private var baseColor = UIColor.second {
+        didSet {
+            self.backgroundColor = self.baseColor
+        }
+    }
+    
+    required init(_ size: Size? = .small) {
+        self.contentInsets = size == .big ? Self.contentInsetsBig : Self.contentInsetsSmall
+
+        super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        self.backgroundColor = .second
+        self.baseColor = .second
+        self.backgroundColor = self.baseColor
+        
         self.textColor = .white
-        self.font = UI.itemCellBadgeFont
-    }
+        self.font = size == .big ? UI.itemCellBadgeBigFont : UI.itemCellBadgeSmallFont
+     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,13 +80,19 @@ class Badge: UILabel {
     }
  
     override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: Self.contentInsets))
+        super.drawText(in: rect.inset(by: self.contentInsets))
         }
     
     override var intrinsicContentSize: CGSize {
         var intrinsicSuperViewContentSize = super.intrinsicContentSize
-        intrinsicSuperViewContentSize.height += Self.contentInsets.top + Self.contentInsets.bottom
-        intrinsicSuperViewContentSize.width += Self.contentInsets.left + Self.contentInsets.right
+        intrinsicSuperViewContentSize.height += self.contentInsets.top + self.contentInsets.bottom
+        intrinsicSuperViewContentSize.width += self.contentInsets.left + self.contentInsets.right
         return intrinsicSuperViewContentSize
     }
+    
+    @objc func select(gestureRecognizer: UITapGestureRecognizer) {
+        print(#function)
+        self.isSelected = !self.isSelected
+    }
+    
 }
