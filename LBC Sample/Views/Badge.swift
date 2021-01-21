@@ -20,7 +20,7 @@ class Badge: UILabel {
     }
     
     enum Size {
-        case small, big
+        case small, medium, big
     }
     
     private let contentInsets: UIEdgeInsets
@@ -49,7 +49,7 @@ class Badge: UILabel {
         return gesture
     }()
     
-    private var baseColor = UIColor.second {
+    public var baseColor = UIColor.second {
         didSet {
             self.backgroundColor = self.baseColor
         }
@@ -65,7 +65,7 @@ class Badge: UILabel {
         self.backgroundColor = self.baseColor
         
         self.textColor = .white
-        self.font = size == .big ? UI.itemCellBadgeBigFont : UI.itemCellBadgeSmallFont
+        self.font = size == .big ? UI.badgeBigFont : size == .medium ? UI.badgeMediumFont : UI.badgeSmallFont
      }
     
     required init?(coder: NSCoder) {
@@ -81,7 +81,7 @@ class Badge: UILabel {
  
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: self.contentInsets))
-        }
+    }
     
     override var intrinsicContentSize: CGSize {
         var intrinsicSuperViewContentSize = super.intrinsicContentSize
