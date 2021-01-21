@@ -58,19 +58,19 @@ class ItemCell: UICollectionViewCell {
         return lbl
     }()
     
-    private var localePriceString: String? {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        // localize to your grouping and decimal separator
-        currencyFormatter.locale = Locale(identifier: "fr_FR")
-        if let price = self.item?.price {
-            return currencyFormatter.string(from: NSNumber(value: price))
-        }
-        else {
-            return nil
-        }
-    }
+//    private var localePriceString: String? {
+//        let currencyFormatter = NumberFormatter()
+//        currencyFormatter.usesGroupingSeparator = true
+//        currencyFormatter.numberStyle = .currency
+//        // localize to your grouping and decimal separator
+//        currencyFormatter.locale = Locale(identifier: "fr_FR")
+//        if let price = self.item?.price {
+//            return currencyFormatter.string(from: NSNumber(value: price))
+//        }
+//        else {
+//            return nil
+//        }
+//    }
     
     let categoryBadge: Badge = {
         let badge = Badge(.small)
@@ -165,7 +165,7 @@ class ItemCell: UICollectionViewCell {
         self.imageLoader.stopAnimating()
         self.urgentTag.isHidden = !(self.item?.isUrgent ?? false)
        
-        self.price.text = self.localePriceString
+        self.price.text = self.item?.price.localePriceString
         self.title.text = self.item?.title ?? "<no title>"
         self.categoryBadge.text = self.item?.category?.name
         self.categoryBadge.isHidden = self.categoryBadge.text == nil
