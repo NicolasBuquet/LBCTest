@@ -103,8 +103,8 @@ class ItemsViewController: AppBaseViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = true
         
         let constraints = [
-            self.collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0),
-            self.collectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0),
+            self.collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.collectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
             self.collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
         ]
@@ -197,6 +197,6 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = self.filteredData[indexPath.row]
-        self.navigationController?.pushViewController(ItemDetail(item: selectedItem), animated: true)
+        self.navigationController?.pushViewController(ItemDetailViewController(item: selectedItem), animated: true)
     }
 }
