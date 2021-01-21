@@ -81,7 +81,7 @@ extension FilterPane: UICollectionViewDataSource {
         let badge = Badge(.big)
         badge.text = self.data[indexPath.row].name
         badge.isSelected = self.data[indexPath.row] == self.currentCategory
-        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        cell.contentView.removeAllSubviews()
         
         cell.contentView.addSubview(badge)
         
