@@ -237,7 +237,6 @@ class ItemDetailViewController: AppBaseViewController {
         _ = AppNetwork.shared.fetchImage(imageUrlString: photoUrl, { (data, error) in
             if let data = data {
                 self.photo.image = UIImage(data: data)
-                print(self.photo.image!.size)
             }
             else {
                 // load default missing image
@@ -358,7 +357,6 @@ extension ItemDetailViewController: UICollectionViewDataSource {
         return cell
     }
     
-
 }
 
 extension ItemDetailViewController: UICollectionViewDelegateFlowLayout {
@@ -386,7 +384,5 @@ extension ItemDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selectedItem = self.filteredData[indexPath.row]
-//        self.navigationController?.pushViewController(ItemDetailViewController(item: selectedItem), animated: true)
     }
 }
