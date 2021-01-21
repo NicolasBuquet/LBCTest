@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  LBC Sample
+
+  Created by Nicolas Buquet on 21/01/2021.
+  
+*/
+
+"Loading.message" = "Chargement en cours…";
+"Loading.network.error.title" = "Erreur";
+"Loading.network.error.message" = "Impossible d'accéder aux annonces.";
+"Loading.network.error.button.retry" = "Réessayer";
+
+"ItemDetail.noCategory" = "<pas de categorie>";
+"ItemDetail.description.title" = "Description";
+"ItemDetail.date.title" = "Parution";
+"ItemDetail.date.message" = "Annonce publiée le %@.";
+"ItemDetail.professional.title" = "Professionnel";
+"ItemDetail.professional.message" = "Ce vendeur est un professionnel (Nº SIRET : %@).";
+
+"Badge.label.professional" = "PRO";

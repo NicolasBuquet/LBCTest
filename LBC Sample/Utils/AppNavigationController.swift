@@ -62,11 +62,6 @@ class AppNavigationController: UINavigationController {
 }
 
 extension AppNavigationController : UINavigationControllerDelegate {
-//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-////        viewController.view.frame = navigationController.view.bounds
-//
-//    }
-    
     func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         return navigationController.topViewController?.supportedInterfaceOrientations ?? .portrait
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class LoadingViewController: AppBaseViewController {
     let message: UILabel = {
-        let lbl = UILabel(text: "Chargement en cours…")
+        let lbl = UILabel(text: NSLocalizedString("Loading.message", comment: ""))
         lbl.font = UI.loadingFont
         lbl.numberOfLines = 1
         lbl.textColor = .text
@@ -65,10 +65,11 @@ class LoadingViewController: AppBaseViewController {
         AppData.shared.fetchData { (success, error) in
             self.loader.stopAnimating()
             guard success else {
-                let action = UIAlertAction(title: "Réessayer", style: .default) { (action) in
+                let action = UIAlertAction(title: NSLocalizedString("Loading.network.error.button.retry", comment: ""), style: .default) { (action) in
                     self.requestData()
                 }
-                (self.navigationController as? AppNavigationController)?.displayAlert(title: "Erreur", message: "Impossible d'accéder aux annonces.", actions: [action])
+                (self.navigationController as? AppNavigationController)?.displayAlert(title: NSLocalizedString("Loading.network.error.title", comment: ""),
+                                                                                      message: NSLocalizedString("Loading.network.error.message", comment: ""), actions: [action])
                 return
             }
             self.navigationController?.setViewControllers([ItemsViewController()], animated: true)

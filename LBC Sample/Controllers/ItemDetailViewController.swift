@@ -63,7 +63,7 @@ class ItemDetailViewController: AppBaseViewController {
     
     lazy var categoryBadge: Badge = { [unowned self] in
         let badge = Badge(.big)
-        badge.text = self.item.category?.name ?? "<no category>"
+        badge.text = self.item.category?.name ?? NSLocalizedString("ItemDetail.noCategory", comment: "")
         return badge
     }()
     
@@ -105,7 +105,7 @@ class ItemDetailViewController: AppBaseViewController {
     }()
     
     let urgentTag: UIImageView = {
-        let imageView = UIImageView(image: ItemCell.urgentImage)
+        let imageView = UIImageView(image: ItemListCell.urgentImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -120,7 +120,7 @@ class ItemDetailViewController: AppBaseViewController {
     
     let descriptionHeader: Badge = {
         let badge = Badge(.medium)
-        badge.text = "Description"
+        badge.text = NSLocalizedString("ItemDetail.description.title", comment: "")
         return badge
     }()
     
@@ -135,12 +135,12 @@ class ItemDetailViewController: AppBaseViewController {
 
     let dateHeader: Badge = {
         let badge = Badge(.medium)
-        badge.text = "Parution"
+        badge.text = NSLocalizedString("ItemDetail.date.title", comment: "")
         return badge
     }()
     
     lazy var dateLabel: UILabel = { [unowned self] in
-        let lbl = UILabel(text: String(format: "Annonce publiée le \(Self.dateFormatter.string(from: self.item.creationDate))."))
+        let lbl = UILabel(text: String(format: NSLocalizedString("ItemDetail.date.message", comment: ""), Self.dateFormatter.string(from: self.item.creationDate)))
         lbl.font = UI.itemDetailInformationFont
         lbl.numberOfLines = 0
         lbl.textColor = .text
@@ -149,13 +149,13 @@ class ItemDetailViewController: AppBaseViewController {
     
     let professionalHeader: Badge = {
         let badge = Badge(.medium)
-        badge.text = "Professionnel"
+        badge.text = NSLocalizedString("ItemDetail.professional.title", comment: "")
         badge.baseColor = .main
         return badge
     }()
     
     lazy var professionalLabel: UILabel = { [unowned self] in
-        let lbl = UILabel(text: String(format: "Ce vendeur est un professionnel (Nº SIRET : \(self.item.siret!))."))
+        let lbl = UILabel(text: String(format: NSLocalizedString("ItemDetail.professional.message", comment: ""), self.item.siret!))
         lbl.font = UI.itemDetailInformationFont
         lbl.numberOfLines = 0
         lbl.textColor = .text
@@ -218,7 +218,7 @@ class ItemDetailViewController: AppBaseViewController {
             cell.contentView.addSubview(self.urgentTag)
             constraints.append(contentsOf: [
                 self.urgentTag.heightAnchor.constraint(equalTo: self.categoryBadge.heightAnchor, constant: -Self.urgentTagInsets.top - Self.urgentTagInsets.bottom),
-                self.urgentTag.widthAnchor.constraint(equalTo: self.urgentTag.heightAnchor, multiplier: ItemCell.urgentImage.size.width/ItemCell.urgentImage.size.height),
+                self.urgentTag.widthAnchor.constraint(equalTo: self.urgentTag.heightAnchor, multiplier: ItemListCell.urgentImage.size.width/ItemListCell.urgentImage.size.height),
                 self.urgentTag.leadingAnchor.constraint(equalTo: self.categoryBadge.trailingAnchor, constant: Self.urgentTagInsets.left),
                 self.urgentTag.centerYAnchor.constraint(equalTo: self.categoryBadge.centerYAnchor),
             ])
@@ -323,8 +323,6 @@ class ItemDetailViewController: AppBaseViewController {
     private func populateCellProfessional(_ cell: UICollectionViewCell) {
         self.populateCellLabel(cell, labelView: self.professionalLabel)
     }
-
-
 }
 
 extension ItemDetailViewController: UICollectionViewDataSource {

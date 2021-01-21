@@ -1,5 +1,5 @@
 //
-//  ItemCell.swift
+//  ItemListCell.swift
 //  LBC Sample
 //
 //  Created by Nicolas Buquet on 19/01/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ItemCell: UICollectionViewCell {
+class ItemListCell: UICollectionViewCell {
     private static let noImage = UIImage(named: "noImage")
     
     var item: Item? {
@@ -20,7 +20,7 @@ class ItemCell: UICollectionViewCell {
     private var photoFetchRequest: NBNetwork.Request?
     
     let photoView: UIImageView = {
-        let imageView = UIImageView(image: ItemCell.noImage)
+        let imageView = UIImageView(image: ItemListCell.noImage)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -37,7 +37,7 @@ class ItemCell: UICollectionViewCell {
     static let urgentImage = UIImage(named: "urgent")! // load resource image only once.
     
     let urgentTag: UIImageView = {
-        let imageView = UIImageView(image: ItemCell.urgentImage)
+        let imageView = UIImageView(image: ItemListCell.urgentImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -97,7 +97,7 @@ class ItemCell: UICollectionViewCell {
             self.photoView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0),
 
             self.urgentTag.widthAnchor.constraint(equalTo: self.photoView.widthAnchor, multiplier: 0.5),
-            self.urgentTag.heightAnchor.constraint(equalTo: self.urgentTag.widthAnchor, multiplier: ItemCell.urgentImage.size.height/ItemCell.urgentImage.size.width),
+            self.urgentTag.heightAnchor.constraint(equalTo: self.urgentTag.widthAnchor, multiplier: ItemListCell.urgentImage.size.height/ItemListCell.urgentImage.size.width),
             self.urgentTag.leadingAnchor.constraint(equalTo: self.photoView.leadingAnchor, constant: 0.0),
             self.urgentTag.topAnchor.constraint(equalTo: self.photoView.topAnchor, constant: 0.0),
 

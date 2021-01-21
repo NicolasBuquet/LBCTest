@@ -105,7 +105,6 @@ class AppData {
             case (_, _) where !$0.isUrgent && $1.isUrgent: return false // non urgent last
             default: return $0.creationDate > $1.creationDate // if same urgency, sort by date descending
             }
-            //($0.isUrgent && !$1.isUrgent) ?  || ($0.creationDate > $1.creationDate) }
         }
     }
     

@@ -15,7 +15,7 @@ class Badge: UILabel {
     static func pro() -> Badge {
         let proBadge = Badge(.small)
         proBadge.baseColor = .main
-        proBadge.text = "PRO"
+        proBadge.text = NSLocalizedString("Badge.label.professional", comment: "")
         return proBadge
     }
     

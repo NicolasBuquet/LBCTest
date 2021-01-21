@@ -21,7 +21,7 @@ class ItemsViewController: AppBaseViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsVerticalScrollIndicator = true
         
-        collectionView.register(ItemCell.self, forCellWithReuseIdentifier: Self.CELL_REUSE_ID)
+        collectionView.register(ItemListCell.self, forCellWithReuseIdentifier: Self.CELL_REUSE_ID)
         
         // Add the refresh control to your UIScrollView object.
         collectionView.refreshControl = UIRefreshControl()
@@ -172,9 +172,7 @@ class ItemsViewController: AppBaseViewController {
                 self.filterBarButton.isEnabled = true
             }
         }
-        
     }
-
 }
 
 extension ItemsViewController: UICollectionViewDataSource {
@@ -183,7 +181,7 @@ extension ItemsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.CELL_REUSE_ID, for: indexPath) as! ItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.CELL_REUSE_ID, for: indexPath) as! ItemListCell
         // Populate cell
         cell.item = self.filteredData[indexPath.row]
         return cell
