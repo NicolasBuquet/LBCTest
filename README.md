@@ -12,4 +12,6 @@ Améliorations possibles :
   - améliorer le design de la vue des filtres (Popover)
   - et bien d'autres… :-)
 
+Développé sur MacBook Pro 15" 2016, macOS 10.15.5, Xcode 12.2 (12B45b)
+
 Testé sur iPhone 12 mini (iOS 14.2.1), iPad Pro 10.5 (iPadOs 13.6.1), iPhone 6 (iOS 12.5) et simulateurs.
