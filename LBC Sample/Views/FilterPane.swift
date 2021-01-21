@@ -29,7 +29,7 @@ class FilterPane : UIView {
         return collectionView
     }()
     
-    let data = AppData.shared.categories
+    let data = AppData.shared.categories.sorted { (c1, c2) in c1.name.caseInsensitiveCompare(c2.name) == .orderedAscending } // Sort categories by name
     var currentCategory: ItemCategory?
     
     let completion: CompletionAction
