@@ -52,8 +52,9 @@ class LBC_ItemTests: XCTestCase {
             }
             else {
                 nextItem = item
-                // Check if previousitem is urgent and not nextItem, or, if the two items have the same urgency level, if previousItem is newerr than nextItem.
-                XCTAssert( (previousItem!.isUrgent && !nextItem!.isUrgent) || (previousItem!.creationDate > nextItem!.creationDate))
+                // Check if previousitem is urgent and not nextItem, or, if the two items have the same urgency level, if previousItem is newer than nextItem.
+                XCTAssert( (previousItem!.isUrgent && !nextItem!.isUrgent) ||
+                            ((previousItem!.isUrgent == nextItem!.isUrgent) && (previousItem!.creationDate > nextItem!.creationDate)))
             }
         }
         print("Unit test: Item Sorting ended")
