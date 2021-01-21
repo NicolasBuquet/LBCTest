@@ -19,7 +19,7 @@ class ItemCell: UICollectionViewCell {
     
     private var photoFetchRequest: NBNetwork.Request?
     
-    let photo: UIImageView = {
+    let photoView: UIImageView = {
         let imageView = UIImageView(image: ItemCell.noImage)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ class ItemCell: UICollectionViewCell {
         return imageView
     }()
     
-    let title: UILabel = {
+    let titleLabel: UILabel = {
         let lbl = UILabel(text: "<title>")
         lbl.font = UI.itemCellTitleFont
         lbl.numberOfLines = 2
@@ -50,27 +50,13 @@ class ItemCell: UICollectionViewCell {
         return lbl
     }()
     
-    let price: UILabel = {
+    let priceLabel: UILabel = {
         let lbl = UILabel(text: "<Price>")
         lbl.font = UI.itemCellPriceFont
         lbl.numberOfLines = 1
         lbl.textColor = .main
         return lbl
     }()
-    
-    private var localePriceString: String? {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        // localize to your grouping and decimal separator
-        currencyFormatter.locale = Locale(identifier: "fr_FR")
-        if let price = self.item?.price {
-            return currencyFormatter.string(from: NSNumber(value: price))
-        }
-        else {
-            return nil
-        }
-    }
     
     let categoryBadge: Badge = {
         let badge = Badge(.small)
@@ -85,13 +71,13 @@ class ItemCell: UICollectionViewCell {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         self.backgroundColor = .white
-        self.addSubview(self.photo)
+        self.addSubview(self.photoView)
         self.addSubview(self.imageLoader)
         self.addSubview(self.urgentTag)
-        self.addSubview(self.price)
+        self.addSubview(self.priceLabel)
         self.addSubview(self.categoryBadge)
         self.addSubview(self.proBadge)
-        self.addSubview(self.title)
+        self.addSubview(self.titleLabel)
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = .zero
@@ -105,30 +91,30 @@ class ItemCell: UICollectionViewCell {
         
         let constraints = [
             // 4 px insets around image
-            self.photo.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0, constant: -8.0),
-            self.photo.widthAnchor.constraint(equalTo: self.photo.heightAnchor, multiplier: 1.0),
-            self.photo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4.0),
-            self.photo.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0),
+            self.photoView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -8.0),
+            self.photoView.widthAnchor.constraint(equalTo: self.photoView.heightAnchor),
+            self.photoView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4.0),
+            self.photoView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4.0),
 
-            self.urgentTag.widthAnchor.constraint(equalTo: self.photo.widthAnchor, multiplier: 1.0),
+            self.urgentTag.widthAnchor.constraint(equalTo: self.photoView.widthAnchor, multiplier: 0.5),
             self.urgentTag.heightAnchor.constraint(equalTo: self.urgentTag.widthAnchor, multiplier: ItemCell.urgentImage.size.height/ItemCell.urgentImage.size.width),
-            self.urgentTag.leadingAnchor.constraint(equalTo: self.photo.leadingAnchor, constant: 0.0),
-            self.urgentTag.topAnchor.constraint(equalTo: self.photo.topAnchor, constant: 0.0),
+            self.urgentTag.leadingAnchor.constraint(equalTo: self.photoView.leadingAnchor, constant: 0.0),
+            self.urgentTag.topAnchor.constraint(equalTo: self.photoView.topAnchor, constant: 0.0),
 
-            self.imageLoader.centerXAnchor.constraint(equalTo: self.photo.centerXAnchor),
-            self.imageLoader.centerYAnchor.constraint(equalTo: self.photo.centerYAnchor),
+            self.imageLoader.centerXAnchor.constraint(equalTo: self.photoView.centerXAnchor),
+            self.imageLoader.centerYAnchor.constraint(equalTo: self.photoView.centerYAnchor),
             
             // Price right aligned, centerY
-            self.price.topAnchor.constraint(equalTo: self.topAnchor),
-            self.price.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4.0),
-            self.price.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
-            self.price.widthAnchor.constraint(greaterThanOrEqualToConstant: 32.0),
+            self.priceLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            self.priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4.0),
+            self.priceLabel.heightAnchor.constraint(equalTo: self.heightAnchor),
+            self.priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 32.0),
             
             // Badges bottom aligned on photo.bottom
             self.categoryBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.categoryBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
-            self.categoryBadge.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
-            self.categoryBadge.bottomAnchor.constraint(equalTo: self.photo.bottomAnchor, constant: -4.0),
+            self.categoryBadge.leadingAnchor.constraint(equalTo: self.titleLabel.leadingAnchor),
+            self.categoryBadge.bottomAnchor.constraint(equalTo: self.photoView.bottomAnchor, constant: -4.0),
             
             self.proBadge.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.proBadge.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
@@ -136,9 +122,9 @@ class ItemCell: UICollectionViewCell {
             self.proBadge.centerYAnchor.constraint(equalTo: self.categoryBadge.centerYAnchor),
             
             // top aligned on photo.top
-            self.title.leadingAnchor.constraint(equalTo: self.photo.trailingAnchor, constant: 16.0),
-            self.title.trailingAnchor.constraint(equalTo: self.price.leadingAnchor, constant: -16.0),
-            self.title.topAnchor.constraint(equalTo: self.photo.topAnchor, constant: 4.0)
+            self.titleLabel.leadingAnchor.constraint(equalTo: self.photoView.trailingAnchor, constant: 16.0),
+            self.titleLabel.trailingAnchor.constraint(equalTo: self.priceLabel.leadingAnchor, constant: -16.0),
+            self.titleLabel.topAnchor.constraint(equalTo: self.photoView.topAnchor, constant: 4.0)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -150,8 +136,8 @@ class ItemCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.title.text = nil
-        self.photo.image = Self.noImage
+        self.titleLabel.text = nil
+        self.photoView.image = Self.noImage
         self.proBadge.isHidden = true // PRO badge is hidden by default
         self.urgentTag.isHidden = true // Urgent tag is hidden by default
     }
@@ -165,20 +151,20 @@ class ItemCell: UICollectionViewCell {
         self.imageLoader.stopAnimating()
         self.urgentTag.isHidden = !(self.item?.isUrgent ?? false)
        
-        self.price.text = self.localePriceString
-        self.title.text = self.item?.title ?? "<no title>"
+        self.priceLabel.text = self.item?.price.localePriceString
+        self.titleLabel.text = self.item?.title ?? "<no title>"
         self.categoryBadge.text = self.item?.category?.name
         self.categoryBadge.isHidden = self.categoryBadge.text == nil
-        self.proBadge.isHidden = !(self.item?.isPro ?? false)
+        self.proBadge.isHidden = !(self.item?.isProfessional ?? false)
         
         if let thumbUrl = self.item?.image.thumb {
         self.photoFetchRequest = AppNetwork.shared.fetchImage(imageUrlString: thumbUrl, { (data, error) in
             if let data = data {
-                self.photo.image = UIImage(data: data)
+                self.photoView.image = UIImage(data: data)
             }
             else {
                 // load default missing image
-                self.photo.image = Self.noImage
+                self.photoView.image = Self.noImage
             }
             
             self.imageLoader.stopAnimating()

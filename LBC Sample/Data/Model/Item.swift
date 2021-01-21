@@ -23,11 +23,12 @@ struct Item {
     let image: (small: String?, thumb: String?)
     
     let creationDate: Date // migrate to native Date format
+    
     let isUrgent: Bool
     
     let siret: String?
     
-    var isPro: Bool { return self.siret != nil }
+    var isProfessional: Bool { return self.siret != nil }
     
     var isImagePresent: Bool { self.image.small != nil && self.image.thumb != nil }
     

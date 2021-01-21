@@ -99,7 +99,14 @@ class AppData {
     
     public static func sortedItems(_ items: [Item]) -> [Item] {
         // Sort on urgent first, secondly on creation date from newer to older
-        return items.sorted { ($0.isUrgent && !$1.isUrgent) || ($0.creationDate > $1.creationDate) }
+        return items.sorted {
+            switch ($0, $1) {
+            case (_, _) where $0.isUrgent && !$1.isUrgent: return true // urgent first
+            case (_, _) where !$0.isUrgent && $1.isUrgent: return false // non urgent last
+            default: return $0.creationDate > $1.creationDate // if same urgency, sort by date descending
+            }
+            //($0.isUrgent && !$1.isUrgent) ?  || ($0.creationDate > $1.creationDate) }
+        }
     }
     
 
