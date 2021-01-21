@@ -9,3 +9,5 @@ Améliorations possibles :
   - sauvegarde des choix utilisateurs pour qu'ils soient persistents à travers les sessions.
   - améliorer le design de la vue des filtres (Popover)
   - et bien d'autres… :-)
+
+Testé sur iPhone 12 mini (iOS 14.2.1), iPad Pro 10.5 (iPadOs 13.6.1), iPhone 6 (iOS 12.5) et simulateurs.
