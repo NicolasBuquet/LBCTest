@@ -3,7 +3,7 @@ LBC Test Nicolas Buquet
 
 Améliorations possibles :
   - gérer un cache au niveau de AppNetwork pour stocker localement et de manière persistente les médias en se basant sur l'url comme clé.
-  - adopter un layout de type grille et cards sur la lsite des annonces sur iPad (d'où le choix d'une UICollectionView plutôt qu'une UITableView).
+  - adopter un layout de type grille et cards sur la liste des annonces sur iPad (d'où le choix d'une UICollectionView plutôt qu'une UITableView).
   - plus de documentation dans le code en passant plus de temps.
   - filtre sur les prix.
   - ordre de tri.
