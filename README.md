@@ -14,4 +14,4 @@ Améliorations possibles :
 
 Développé sur MacBook Pro 15" 2016, macOS 10.15.5, Xcode 12.2 (12B45b)
 
-Testé sur iPhone 12 mini (iOS 14.2.1), iPad Pro 10.5 (iPadOs 13.6.1), iPhone 6 (iOS 12.5) et simulateurs.
+Testé sur iPhone 12 mini (iOS 14.2.1), iPad Pro 10.5 (iPadOs 13.6.1), iPhone SE 2016 (iOS 14.3) (optimisations UI à prévoir), iPhone 6 (iOS 12.5) et simulateurs.
